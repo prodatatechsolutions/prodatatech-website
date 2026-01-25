@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ProData Tech Solutions provides web development and data analytics services using Python, Django, and Power BI.">
+    <meta name="keywords" content="Web Development, Data Analytics, Django, Power BI, ProData Tech Solutions">
+    <meta name="author" content="ProData Tech Solutions">
+    <title>ProData Tech Solutions</title>
+    <link rel="icon" href="./image/Logo.png">
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+<!-- HEADER -->
+<header class="navbar">
+    <div class="logo">
+        <img src="./image/Logo1.png" class="logo1" alt="ProData Logo">
+    </div>
+
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+   <nav>
+    <ul id="nav-links">
+        <li><a href="#home" class="nav-link" data-section="home">Home</a></li>
+        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+        <li><a href="#services" class="nav-link" data-section="services">Services</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+    </ul>
+</nav>
+</header>
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+    <div class="hero-text">
+        <h1>ProData Tech Solutions</h1>
+        <h3>Where Data Meets Technology</h3>
+        <p class="line"></p>
+        <p>We build smart web applications and</p>
+        <p>data‑driven dashboards for businesses and students.</p>
+    </div>
+
+    <div class="hero-image">
+        <img src="./image/bg1.png" alt="Technology Illustration">
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about reveal" id="about" >
+    <div class="container">
+        <h1 class="section-title">About Us</h1>
+
+        <p class="intro">
+            <strong>ProData Tech Solutions</strong> is a technology and data analytics company focused on
+            building smart, reliable, and affordable digital solutions for businesses and students.
+        </p>
+
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>What We Do</h2>
+                <p>
+                    We specialize in <strong>web application development</strong> and
+                    <strong>data analytics</strong>, helping organizations turn ideas and raw data
+                    into meaningful, actionable solutions.
+                </p>
+                <p>
+                    Our approach combines modern software development with data‑driven insights.
+                </p>
+            </div>
+
+            <div class="about-box">
+                <h2>Our Mission</h2>
+                <p>
+                    To deliver practical, efficient, and high‑quality technology solutions.
+                </p>
+            </div>
+        </div>
+
+        <div class="why-us">
+            <h2>Why Choose ProData Tech Solutions</h2>
+            <ul>
+                <li>Balanced expertise in Data & Technology</li>
+                <li>Clean and professional solutions</li>
+                <li>Affordable pricing</li>
+                <li>Client‑focused approach</li>
+                <li>On‑time delivery</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="services reveal" id="services">
+    <div class="container">
+        <h1 class="section-title">Our Services</h1>
+
+        <div class="services-grid">
+            <div class="service-card stagger">
+                <h3>Web Development</h3>
+                <p>Python & Django web applications, dashboards, and custom websites.</p>
+            </div>
+
+            <div class="service-card stagger">
+                <h3>Data Analytics</h3>
+                <p>Power BI dashboards, Excel automation, and business reports.</p>
+            </div>
+
+            <div class="service-card stagger">
+                <h3>End‑to‑End Solutions</h3>
+                <p>Complete systems combining web applications and analytics.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="contact reveal" id="contact">
+    <div class="container">
+        <h1 class="section-title">Contact Us</h1>
+
+        <p>If you have a project or any questions, feel free to contact us.</p>
+
+        <div class="contact-details">
+            <p><strong>Email:</strong> info@prodatatech.in</p>
+            <p><strong>Phone:</strong> +91-XXXXXXXXXX</p>
+        </div>
+
+        <a href="mailto:info@prodatatech.in" class="contact-btn">
+            Send Email
+        </a>
+    </div>
+</section>
+<footer class="footer">
+    <p>© 2026 ProData Tech Solutions. All rights reserved.</p>
+</footer>
+<script>
+/* ===============================
+   MOBILE MENU TOGGLE
+================================ */
+function toggleMenu() {
+    document.getElementById("nav-links").classList.toggle("show");
+}
+/* AUTO-CLOSE MOBILE MENU ON LINK CLICK */
+const navLinksMobile = document.querySelectorAll("#nav-links .nav-link");
+
+navLinksMobile.forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("nav-links").classList.remove("show");
+    });
+});
+/* ===============================
+   ACTIVE MENU ON SCROLL
+================================ */
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-link");
+
+function setActiveMenu() {
+    let current = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    /* 🔥 Fix for last section (Contact) */
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 5) {
+        current = "contact";
+    }
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.dataset.section === current) {
+            link.classList.add("active");
+        }
+    });
+}
+
+/* ===============================
+   REVEAL + STAGGER ANIMATION
+================================ */
+const revealSections = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+    const revealPoint = 120;
+
+    revealSections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+
+        if (sectionTop < windowHeight - revealPoint) {
+            section.classList.add("active");
+
+            /* STAGGER ITEMS */
+            const staggerItems = section.querySelectorAll(".stagger");
+            staggerItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.2}s`;
+                item.classList.add("active");
+            });
+        }
+    });
+}
+
+/* ===============================
+   EVENT LISTENERS
+================================ */
+window.addEventListener("scroll", () => {
+    setActiveMenu();
+    revealOnScroll();
+});
+
+window.addEventListener("load", () => {
+    setActiveMenu();
+    revealOnScroll();
+});
+
+</script>
+
+</body>
+</html>
